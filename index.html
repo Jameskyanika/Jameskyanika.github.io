@@ -225,18 +225,33 @@
       margin-bottom: 12px;
     }
 
-    .contact-box {
-      max-width: 750px;
-      margin: auto;
-      padding: 35px;
-      background: var(--accent);
-      border-radius: 10px;
-      text-align: center;
-    }
+   .contact-box {
+  max-width: 750px;
+  margin: auto;
+  padding: 35px 45px;
+  background: var(--accent);
+  border-radius: 10px;
+  text-align: left;
+}
 
-    .contact-box p {
-      margin: 9px 0;
-    }
+.contact-box p {
+  margin: 12px 0;
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.contact-box p:first-child {
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.contact-box a {
+  word-break: break-word;
+}
 
     footer {
       background: var(--dark);
@@ -840,26 +855,25 @@ header {
         <h2 class="section-title">Contact</h2>
 
         <div class="contact-box">
-          <p><strong>James Kyanika</strong></p>
+         <p><strong>James Kyanika</strong></p>
 
-          <p>Kampala, Uganda</p>
-
-       <p>
-  Telephone 1:
-  <a href="tel:+256771298605">
-    +256 771 298 605
-  </a>
+<p>
+  <strong>Location:</strong>
+  <span>Kampala, Uganda</span>
 </p>
 
 <p>
-  Telephone 2:
-  <a href="tel:+256703502961">
-    +256 703 502 961
-  </a>
+  <strong>Telephone 1:</strong>
+  <a href="tel:+256771298605">+256 771 298 605</a>
 </p>
 
 <p>
-  WhatsApp:
+  <strong>Telephone 2:</strong>
+  <a href="tel:+256703502961">+256 703 502 961</a>
+</p>
+
+<p>
+  <strong>WhatsApp:</strong>
   <a
     href="https://wa.me/256703502961?text=Hello%20James%2C%20I%20would%20like%20to%20discuss%20an%20IT%20opportunity."
     target="_blank"
@@ -869,34 +883,34 @@ header {
   </a>
 </p>
 
-          <p>
-            Email:
-            <a href="mailto:kyanikajames@gmail.com">
-              kyanikajames@gmail.com
-            </a>
-          </p>
+<p>
+  <strong>Email:</strong>
+  <a href="mailto:kyanikajames@gmail.com">
+    kyanikajames@gmail.com
+  </a>
+</p>
 
-          <p>
-            LinkedIn:
-            <a
-              href="https://www.linkedin.com/in/jameskyanika"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              linkedin.com/in/jameskyanika
-            </a>
-          </p>
+<p>
+  <strong>LinkedIn:</strong>
+  <a
+    href="https://www.linkedin.com/in/jameskyanika"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    linkedin.com/in/jameskyanika
+  </a>
+</p>
 
-          <p>
-            GitHub:
-            <a
-              href="https://github.com/Jameskyanika"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              github.com/Jameskyanika
-            </a>
-          </p>
+<p>
+  <strong>GitHub:</strong>
+  <a
+    href="https://github.com/Jameskyanika"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    github.com/Jameskyanika
+  </a>
+</p>
         </div>
       </div>
     </section>

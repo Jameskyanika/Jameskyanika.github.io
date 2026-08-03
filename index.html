@@ -294,7 +294,14 @@
   border: 7px solid rgba(255, 255, 255, 0.9);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.28);
 }
-
+.project-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
 @media (max-width: 850px) {
   .hero-container {
     grid-template-columns: 1fr;
@@ -613,6 +620,11 @@
         <div class="grid">
 
           <div class="card project-card">
+            <img
+  src="fortigate-project-cover.png"
+  alt="FortiGate 60F enterprise firewall project"
+  class="project-image"
+>
             <h3>FortiGate 60F Firewall</h3>
 
             <p>

@@ -1,0 +1,20 @@
+title: James Kyanika
+description: Network and Systems Administrator portfolio, technical blog, projects, certifications and IT support resources.
+url: "https://jameskyanika.com"
+baseurl: ""
+
+author:
+  name: James Kyanika
+  email: kyanikajames@gmail.com
+
+timezone: Africa/Kampala
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-feed
+  - jekyll-sitemap
+
+permalink: /blog/:title/
+
+exclude:
+  - README.md

@@ -145,6 +145,29 @@ description: Technical articles by James Kyanika on networking, systems administ
         font-size: 32px;
       }
     }
+    .blog-nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 24px 0 32px;
+}
+
+.blog-nav a {
+  display: inline-block;
+  padding: 10px 18px;
+  background: var(--primary);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.blog-nav a:hover {
+  background: var(--secondary);
+}
+
+</style>
   </style>
 </head>
 
@@ -166,10 +189,16 @@ description: Technical articles by James Kyanika on networking, systems administ
     <section class="blog-header">
       <h1>Technical Blog</h1>
 
-      <p>
-        Practical articles on networking, Windows systems, cybersecurity,
-        firewalls, CCTV, printers, virtualization and IT support.
-      </p>
+   <p>
+  Practical articles on networking, Windows systems, cybersecurity,
+  firewalls, CCTV, printers, virtualization and IT support.
+</p>
+
+<div class="blog-nav">
+  <a href="/blog/">All Posts</a>
+  <a href="/categories/">Categories</a>
+  <a href="/tags/">Tags</a>
+</div>
     </section>
 
     <section class="post-list">

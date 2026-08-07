@@ -3,7 +3,7 @@ layout: post
 title: "CCTV Network Camera Installation: Step-by-Step Guide"
 seo_title: "CCTV Network Camera Installation – Step-by-Step Guide"
 description: "Learn how to install CCTV network cameras using a PoE switch, NVR, router and monitor, including cabling, camera discovery, recording and remote viewing."
-date: 2026-08-06
+date: 2026-08-06 15:00:00 +0300
 author: James Kyanika
 reading_time: 10
 

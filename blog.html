@@ -166,7 +166,162 @@ description: Technical articles by James Kyanika on networking, systems administ
 .blog-nav a:hover {
   background: var(--secondary);
 }
+/* Magazine blog grid */
 
+.post-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px 70px;
+}
+
+.post-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.featured-post {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+}
+
+.post-image-link {
+  display: block;
+  overflow: hidden;
+}
+
+.post-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.featured-post .post-image {
+  height: 100%;
+  min-height: 320px;
+}
+
+.post-image-placeholder {
+  height: 220px;
+  background: #eaf1f6;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.post-content {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.post-category {
+  color: var(--secondary);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.post-card h2 {
+  margin: 0 0 12px;
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+.featured-post h2 {
+  font-size: 30px;
+}
+
+.post-card h2 a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.post-card h2 a:hover {
+  text-decoration: underline;
+}
+
+.post-meta {
+  color: #667085;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.post-meta span {
+  margin-left: 6px;
+}
+
+.post-excerpt {
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+
+.read-button {
+  display: inline-block;
+  margin-top: auto;
+  align-self: flex-start;
+  background: var(--primary);
+  color: #ffffff;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.read-button:hover {
+  background: var(--secondary);
+}
+
+@media (max-width: 900px) {
+  .post-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .featured-post {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-post .post-image {
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 600px) {
+  .post-list {
+    grid-template-columns: 1fr;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .featured-post {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .post-image,
+  .featured-post .post-image {
+    height: 220px;
+    min-height: 0;
+  }
+
+  .featured-post h2 {
+    font-size: 24px;
+  }
+}
 </style>
   </style>
 </head>
@@ -204,25 +359,61 @@ description: Technical articles by James Kyanika on networking, systems administ
     <section class="post-list">
       {% if site.posts.size > 0 %}
 
-        {% for post in site.posts %}
-          <article class="post-card">
-            <h2>
-              <a href="{{ post.url | relative_url }}">
-                {{ post.title }}
-              </a>
-            </h2>
+      {% for post in site.posts %}
 
-            <div class="post-meta">
-              {{ post.date | date: "%d %B %Y" }}
-            </div>
+  <article class="post-card {% if forloop.first %}featured-post{% endif %}">
 
-            <p>
-              {{ post.excerpt | strip_html | truncate: 180 }}
-            </p>
+    {% if post.image %}
+      <a class="post-image-link" href="{{ post.url | relative_url }}">
+        <img
+          class="post-image"
+          src="{{ post.image | relative_url }}"
+          alt="{{ post.image_alt | default: post.title }}"
+        >
+      </a>
+    {% else %}
+      <a class="post-image-link" href="{{ post.url | relative_url }}">
+        <div class="post-image-placeholder">
+          James Kyanika IT
+        </div>
+      </a>
+    {% endif %}
 
-            <a href="{{ post.url | relative_url }}">Read article →</a>
-          </article>
-        {% endfor %}
+    <div class="post-content">
+
+      {% if post.categories %}
+        <div class="post-category">
+          {{ post.categories | first }}
+        </div>
+      {% endif %}
+
+      <h2>
+        <a href="{{ post.url | relative_url }}">
+          {{ post.title }}
+        </a>
+      </h2>
+
+      <div class="post-meta">
+        {{ post.date | date: "%d %B %Y" }}
+
+        {% if post.reading_time %}
+          <span>• {{ post.reading_time }} min read</span>
+        {% endif %}
+      </div>
+
+      <p class="post-excerpt">
+        {{ post.excerpt | strip_html | truncate: 160 }}
+      </p>
+
+      <a class="read-button" href="{{ post.url | relative_url }}">
+        Read Article →
+      </a>
+
+    </div>
+
+  </article>
+
+{% endfor %}
 
       {% else %}
 

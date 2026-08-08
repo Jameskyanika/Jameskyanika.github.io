@@ -4,21 +4,98 @@ title: Tags
 permalink: /tags/
 ---
 
-<h1>Blog Tags</h1>
+<section class="blog-archive-page">
 
-{% assign sorted_tags = site.tags | sort %}
+  <div class="blog-archive-header">
+    <h1>Blog Tags</h1>
 
-{% for tag in sorted_tags %}
-  <section>
-    <h2>{{ tag[0] }}</h2>
+    <p>
+      Browse technical articles by topic and technology.
+    </p>
 
-    <ul>
-      {% for post in tag[1] %}
-        <li>
-          <a href="{{ post.url }}">{{ post.title }}</a>
-          <small>— {{ post.date | date: "%d %B %Y" }}</small>
-        </li>
-      {% endfor %}
-    </ul>
-  </section>
-{% endfor %}
+    <div class="blog-filter-nav">
+      <a href="/blog/" class="blog-filter-btn">All Posts</a>
+      <a href="/categories/" class="blog-filter-btn">Categories</a>
+      <a href="/tags/" class="blog-filter-btn active">Tags</a>
+    </div>
+  </div>
+
+
+  <!-- TAG PILLS -->
+  <div class="tag-cloud">
+
+    {% assign sorted_tags = site.tags | sort %}
+
+    {% for tag in sorted_tags %}
+
+      <a href="#{{ tag[0] | slugify }}" class="tag-pill">
+        {{ tag[0] }}
+        <span>{{ tag[1].size }}</span>
+      </a>
+
+    {% endfor %}
+
+  </div>
+
+
+  <!-- TAG ARTICLE SECTIONS -->
+  <div class="tag-sections">
+
+    {% for tag in sorted_tags %}
+
+      <section class="tag-card" id="{{ tag[0] | slugify }}">
+
+        <div class="tag-card-header">
+
+          <h2>{{ tag[0] }}</h2>
+
+          <span class="tag-count">
+            {{ tag[1].size }}
+            {% if tag[1].size == 1 %}
+              article
+            {% else %}
+              articles
+            {% endif %}
+          </span>
+
+        </div>
+
+
+        <div class="tag-post-list">
+
+          {% for post in tag[1] %}
+
+            <a href="{{ post.url | relative_url }}"
+               class="tag-post-item">
+
+              <div class="tag-post-info">
+
+                <h3>{{ post.title }}</h3>
+
+                {% if post.excerpt %}
+                  <p>
+                    {{ post.excerpt
+                       | strip_html
+                       | truncate: 110 }}
+                  </p>
+                {% endif %}
+
+              </div>
+
+              <time>
+                {{ post.date | date: "%d %B %Y" }}
+              </time>
+
+            </a>
+
+          {% endfor %}
+
+        </div>
+
+      </section>
+
+    {% endfor %}
+
+  </div>
+
+</section>

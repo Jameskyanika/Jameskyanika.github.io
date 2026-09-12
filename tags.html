@@ -1,101 +1,325 @@
 ---
-layout: default
+layout: null
 title: Tags
 permalink: /tags/
+description: Browse James Kyanika's technical blog articles by tag and technology.
 ---
 
-<section class="blog-archive-page">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <div class="blog-archive-header">
-    <h1>Blog Tags</h1>
+  <title>Blog Tags | James Kyanika</title>
 
-    <p>
-      Browse technical articles by topic and technology.
-    </p>
+  <style>
+    :root {
+      --primary: #0f4c75;
+      --secondary: #1769aa;
+      --light: #f4f8fb;
+      --white: #ffffff;
+      --text: #1f2937;
+      --muted: #5f6b7a;
+      --border: #d8e2e8;
+      --tag-bg: #e7f2fa;
+    }
 
-    <div class="blog-filter-nav">
-      <a href="/blog/" class="blog-filter-btn">All Posts</a>
-      <a href="/categories/" class="blog-filter-btn">Categories</a>
-      <a href="/tags/" class="blog-filter-btn active">Tags</a>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--light);
+    }
+
+    header {
+      background: var(--primary);
+      color: white;
+    }
+
+    nav {
+      max-width: 1140px;
+      margin: auto;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    nav strong {
+      font-size: 20px;
+    }
+
+    nav div {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 55px 24px 70px;
+    }
+
+    .blog-archive-header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .blog-archive-header h1 {
+      margin: 0 0 12px;
+      font-size: 40px;
+      color: var(--primary);
+    }
+
+    .blog-archive-header p {
+      max-width: 680px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    .blog-filter-nav {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 24px 0 38px;
+    }
+
+    .blog-filter-btn {
+      display: inline-block;
+      padding: 10px 18px;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .blog-filter-btn:hover {
+      background: var(--secondary);
+    }
+
+    .blog-filter-btn.active {
+      background: var(--secondary);
+    }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 45px;
+    }
+
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: var(--tag-bg);
+      color: var(--primary);
+      text-decoration: none;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 14px;
+      border: 1px solid var(--border);
+    }
+
+    .tag-pill:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .tag-pill span {
+      background: rgba(255, 255, 255, 0.6);
+      color: var(--primary);
+      border-radius: 50%;
+      font-size: 12px;
+      padding: 1px 7px;
+    }
+
+    .tag-pill:hover span {
+      background: rgba(255, 255, 255, 0.25);
+      color: white;
+    }
+
+    .tag-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      margin-bottom: 20px;
+      scroll-margin-top: 110px;
+    }
+
+    .tag-card-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .tag-card-header h2 {
+      margin: 0;
+      color: var(--primary);
+      font-size: 24px;
+    }
+
+    .tag-count {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .tag-post-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .tag-post-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      text-decoration: none;
+      color: inherit;
+      padding: 14px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .tag-post-list .tag-post-item:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .tag-post-info h3 {
+      margin: 0 0 6px;
+      color: var(--secondary);
+      font-size: 17px;
+    }
+
+    .tag-post-item:hover h3 {
+      text-decoration: underline;
+    }
+
+    .tag-post-info p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .tag-post-item time {
+      white-space: nowrap;
+      color: var(--muted);
+      font-size: 13px;
+      padding-top: 3px;
+    }
+
+    @media (max-width: 700px) {
+      nav {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .blog-archive-header h1 {
+        font-size: 32px;
+      }
+
+      .tag-card {
+        padding: 20px;
+      }
+
+      .tag-post-item {
+        flex-direction: column;
+        gap: 4px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <strong>James Kyanika</strong>
+
+    <div>
+      <a href="/">Home</a>
+      <a href="/#about">About</a>
+      <a href="/#skills">Skills</a>
+      <a href="/#experience">Experience</a>
+      <a href="/#projects">Projects</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#certifications">Certifications</a>
+      <a href="/#contact">Contact</a>
     </div>
-  </div>
+  </nav>
+</header>
+
+<main>
+
+  <section class="blog-archive-page">
+
+    <div class="blog-archive-header">
+      <h1>Blog Tags</h1>
+
+      <p>
+        Browse technical articles by topic and technology.
+      </p>
+
+      <div class="blog-filter-nav">
+        <a href="/blog/" class="blog-filter-btn">All Posts</a>
+        <a href="/categories/" class="blog-filter-btn">Categories</a>
+        <a href="/tags/" class="blog-filter-btn active">Tags</a>
+      </div>
+    </div>
 
 
-  <!-- TAG PILLS -->
-  <div class="tag-cloud">
+    <!-- TAG PILLS -->
+    <div class="tag-cloud">
 
-    {% assign sorted_tags = site.tags | sort %}
+      {% assign sorted_tags = site.tags | sort %}
 
-    {% for tag in sorted_tags %}
+      {% for tag in sorted_tags %}
 
-      <a href="#{{ tag[0] | slugify }}" class="tag-pill">
-        {{ tag[0] }}
-        <span>{{ tag[1].size }}</span>
-      </a>
+        <a href="#{{ tag[0] | slugify }}" class="tag-pill">
+          {{ tag[0] }}
+          <span>{{ tag[1].size }}</span>
+        </a>
 
-    {% endfor %}
+      {% endfor %}
 
-  </div>
-
-
-  <!-- TAG ARTICLE SECTIONS -->
-  <div class="tag-sections">
-
-    {% for tag in sorted_tags %}
-
-      <section class="tag-card" id="{{ tag[0] | slugify }}">
-
-        <div class="tag-card-header">
-
-          <h2>{{ tag[0] }}</h2>
-
-          <span class="tag-count">
-            {{ tag[1].size }}
-            {% if tag[1].size == 1 %}
-              article
-            {% else %}
-              articles
-            {% endif %}
-          </span>
-
-        </div>
+    </div>
 
 
-        <div class="tag-post-list">
+    <!-- TAG ARTICLE SECTIONS -->
+    <div class="tag-sections">
 
-          {% for post in tag[1] %}
+      {% for tag in sorted_tags %}
 
-            <a href="{{ post.url | relative_url }}"
-               class="tag-post-item">
+        <section class="tag-card" id="{{ tag[0] | slugify }}">
 
-              <div class="tag-post-info">
+          <div class="tag-card-header">
 
-                <h3>{{ post.title }}</h3>
+            <h2>{{ tag[0] }}</h2>
 
-                {% if post.excerpt %}
-                  <p>
-                    {{ post.excerpt
-                       | strip_html
-                       | truncate: 110 }}
-                  </p>
-                {% endif %}
-
-              </div>
-
-              <time>
-                {{ post.date | date: "%d %B %Y" }}
-              </time>
-
-            </a>
-
-          {% endfor %}
-
-        </div>
-
-      </section>
-
-    {% endfor %}
-
-  </div>
-
-</section>
+            <span

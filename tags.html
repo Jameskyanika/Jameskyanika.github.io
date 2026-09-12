@@ -305,4 +305,63 @@ description: Browse James Kyanika's technical blog articles by tag and technolog
       {% for tag in sorted_tags %}
 
         <a href="#{{ tag[0] | slugify }}" class="tag-pill">
-          {{ tag[0] }}
+                    {{ tag[0] }}
+          <span>{{ tag[1].size }}</span>
+        </a>
+
+      {% endfor %}
+
+    </div>
+
+
+    <!-- TAG ARTICLE SECTIONS -->
+    <div class="tag-sections">
+
+      {% for tag in sorted_tags %}
+
+        <section class="tag-card" id="{{ tag[0] | slugify }}">
+
+          <div class="tag-card-header">
+
+            <h2>{{ tag[0] }}</h2>
+
+            <span class="tag-count">{{ tag[1].size }} article{% if tag[1].size != 1 %}s{% endif %}</span>
+
+          </div>
+
+          <div class="tag-post-list">
+
+            {% for post in tag[1] %}
+
+              <a class="tag-post-item" href="{{ post.url | relative_url }}">
+
+                <div class="tag-post-info">
+                  <h3>{{ post.title }}</h3>
+
+                  <p>{{ post.excerpt | strip_html | truncate: 140 }}</p>
+                </div>
+
+                <time>{{ post.date | date: "%d %b %Y" }}</time>
+
+              </a>
+
+            {% endfor %}
+
+          </div>
+
+        </section>
+
+      {% endfor %}
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  © {{ site.time | date: "%Y" }} James Kyanika
+</footer>
+
+</body>
+</html>
